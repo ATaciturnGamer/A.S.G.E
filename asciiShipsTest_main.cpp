@@ -4,16 +4,10 @@
 #include "A.S.G.E/src/GameLoop.hpp"
 #include "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.hpp"
 
-// #include <conio.h>
-//
-// #include <Windows.h>
-
 int state;
 std::string art;
 std::vector<float> rpos(2);
 std::vector<int> spos(2);
-// HANDLE wHnd;    // Handle to write to the console.
-// HANDLE rHnd;    // Handle to read from the console.
 
 
 std::string getFileContents (std::ifstream& File)
@@ -47,23 +41,6 @@ void GameLoop::_init()
     art = getFileContents (Reader);
     rpos[0]=0;
     rpos[1]=0;
-
-    // //TESTING Window
-    // wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
-    // rHnd = GetStdHandle(STD_INPUT_HANDLE);
-    //
-    // SetConsoleTitle(TEXT("Win32 Console Control Demo"));
-    //
-    // // Set up the required window size:
-    // SMALL_RECT windowSize = {0, 0, 100, 26};
-    //
-    // // Change the console window size:
-    // SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
-    // // Create a COORD to hold the buffer size:
-    // COORD bufferSize = {101, 27};
-    //
-    // // Change the internal buffer size:
-    // SetConsoleScreenBufferSize(wHnd, bufferSize);
 }
 
 void GameLoop::_update(int delta)
