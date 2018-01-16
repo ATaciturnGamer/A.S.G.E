@@ -16,7 +16,7 @@ public:
     void _startUp();
     void _shutDown();
 
-    void fillInputBuffer();
+    void fillInputBuffer(WINDOW* win);
     void flushInputBuffer();
     int getKeyPressed();
     bool isKeyPressed(int scancode);

@@ -14,5 +14,5 @@ public:
     void _shutDown();
     void clear();
     void render(std::vector<int> pos, std::string fr);
-    void drawAll();
+    void draw(WINDOW* win, int width, int height);
 };

@@ -12,11 +12,6 @@ AsciiRenderer::~AsciiRenderer()
 
 void AsciiRenderer::_startUp()
 {
-	initscr();
-	raw();
-	keypad(stdscr,TRUE);
-	noecho();
-	nodelay(stdscr,TRUE);
 }
 
 void AsciiRenderer::_shutDown()
@@ -62,12 +57,11 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj)
     }
 }
 
-void AsciiRenderer::drawAll()
+void AsciiRenderer::draw(WINDOW* win, int width, int height)
 {
-	for (int y = 0; y < 25; ++y) {
-        for (int x = 0; x < 100; ++x) {
-			mvwaddch(stdscr,y, x, frame[y][x]);
+	for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+			mvwaddch(win,y, x, frame[y][x]);
 		}
 	}
-	refresh();
 }

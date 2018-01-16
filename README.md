@@ -16,7 +16,7 @@ Then it sort of took off from there.
 ### TODO:
 
 <ul>
-  <li>Window System (For implementing GUIs)</li>
+  <li>AscWindow System (For implementing GUIs)</li>
   <li>Scene System</li>
   <li>Ascii Render System (With Z axis sorting)</li>
 </ul>

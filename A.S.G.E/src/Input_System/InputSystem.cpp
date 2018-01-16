@@ -26,13 +26,13 @@ void InputSystem::_shutDown()
 	printf("\033[?1003l\n"); // Disable mouse movement events (l=low)
 }
 
-void InputSystem::fillInputBuffer()
+void InputSystem::fillInputBuffer(WINDOW* win)
 {
-	int i = wgetch(stdscr);
+	int i = wgetch(win);
 	bool flag = false;
-	while (i!=ERR)
+	if (i!=ERR)
 	{
-		printw("Input: %d\n",i);
+		mvwprintw(win,1,2,"Input: %d",i);
 		flag = false;
 		if (i!=-103)
 		{
@@ -63,7 +63,6 @@ void InputSystem::fillInputBuffer()
 				inputBuffer.push_back(*e);
 			}
 		}
-		i = getch();
 	}
 }
 
@@ -94,7 +93,7 @@ bool InputSystem::isMouseKeyPressed(int scancode)
 		{
 			if (iterator->mbutton_state & scancode)
 			{
-				printw("%d %d",iterator->mpos[0],iterator->mpos[1]);
+				// printw("%d %d",iterator->mpos[0],iterator->mpos[1]);
 				return true;
 			}
 		}
