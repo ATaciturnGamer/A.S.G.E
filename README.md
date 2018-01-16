@@ -25,5 +25,5 @@ Then it sort of took off from there.
 To see a demo of current progress, compile using:<br />
 <code>
 "g++" "A.S.G.E/src/GameLoop.cpp" "A.S.G.E/src/Timer.cpp" "A.S.G.E/src/Input_System/InputSystem.cpp" "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.cpp" -std=c++11 "asciiShipsTest_main.cpp" -o "asciiShipsTest_main" -lncurses
-</code>
+</code><br />
 I know, I know. It's messy for now. But a working prototype is what I require for now.
