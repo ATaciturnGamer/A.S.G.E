@@ -10,8 +10,11 @@ namespace ASGE {
     	noecho();
     	cbreak();
         refresh();
-        render_window = createWindow(100,15,0,0);
-        log_window = createWindow(100,10,0,16);
+        render_window = createWindow(100,25,0,0);
+        log_window = createWindow(100,5,0,26);
+        start_color();
+        init_color(COLOR_RED, 700, 0, 0);
+    	init_pair(1, COLOR_RED, COLOR_BLACK);
     }
 
     void WindowSystem::_shutDown()
@@ -68,16 +71,11 @@ namespace ASGE {
     }
 
     void WindowSystem::termResized() {
-        // std::vector<int> s1(2),s2(2),p1(2),p2(2);
-        // s1 = render_window->getSize();
-        // s1 = log_window->getSize();
-        // p1 = render_window->getPos();
-        // p1 = log_window->getPos();
-        // destroyWindow(log_window);
-        // destroyWindow(render_window);
-        // render_window = createWindow(s1[0],s1[1],p1[0],p1[1]);
-        // log_window = createWindow(s2[0],s2[1],p2[0],p2[1]);
-        wresize(render_window->getNcursesWin(),render_window->getSize()[1],render_window->getSize()[0]);
-        wresize(log_window->getNcursesWin(),log_window->getSize()[1],log_window->getSize()[0]);
+        log_window->rebuild();
+        render_window->rebuild();
+        // render_window = createWindow(100,15,0,0);
+        // log_window = createWindow(100,10,0,16);
+        // wresize(render_window->getNcursesWin(),render_window->getSize()[1],render_window->getSize()[0]);
+        // wresize(log_window->getNcursesWin(),log_window->getSize()[1],log_window->getSize()[0]);
     }
 }

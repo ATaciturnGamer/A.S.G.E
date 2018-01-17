@@ -37,4 +37,21 @@ namespace ASGE
         return v;
     }
 
+    void AscWindow::rebuild()
+    {
+        delwin(ncurses_window);
+        ncurses_window = newwin(height, width, y, x);
+        box(ncurses_window,0,0);//Draws border
+    	keypad(ncurses_window,TRUE);
+    	nodelay(ncurses_window,TRUE);
+    }
+
+    void AscWindow::resize(int w, int h, int x, int y)
+    {
+        height = h;
+        width = w;
+        this->x = x;
+        this->y = y;
+        wresize(ncurses_window,h,w);
+    }
 }

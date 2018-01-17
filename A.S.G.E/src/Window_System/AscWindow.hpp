@@ -17,5 +17,8 @@ namespace ASGE
         std::vector<int> getSize();
         std::vector<int> getPos();
 
+        void rebuild();
+        void resize(int w, int h, int x, int y);
+
     };
 }
