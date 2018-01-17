@@ -6,7 +6,7 @@
 #include "Input_System/InputSystem.hpp"
 #include <ncurses.h>
 
-WINDOW *win_render, *win_log;
+ASGE::AscWindow *win_render, *win_log;
 
 GameLoop::GameLoop()
 {
@@ -21,8 +21,8 @@ void GameLoop::_startUp()
     ASGE::WindowSystem::getInstance()._startUp();
     AsciiRenderer::getInstance();
     InputSystem::getInstance();
-    win_render = ASGE::WindowSystem::getInstance().getRenderWindow()->getNcursesWin();
-    win_log = ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin();
+    win_render = ASGE::WindowSystem::getInstance().getRenderWindow();
+    win_log = ASGE::WindowSystem::getInstance().getLogWindow();
 }
 
 void GameLoop::_shutDown()
@@ -42,7 +42,7 @@ void GameLoop::Run()
         ticker.start();
         // wrefresh(ASGE::WindowSystem::getInstance().getLogWindow());
         // wrefresh(ASGE::WindowSystem::getInstance().getRenderWindow());
-        InputSystem::getInstance().fillInputBuffer(win_log);
+        InputSystem::getInstance().fillInputBuffer(win_log->getNcursesWin());
         if (InputSystem::getInstance().isKeyPressed(KEY_RESIZE))
         {
             ASGE::WindowSystem::getInstance().termResized();
@@ -58,7 +58,7 @@ void GameLoop::Run()
 
 void GameLoop::_draw()
 {
-   AsciiRenderer::getInstance().draw(win_render,100,25);
+   AsciiRenderer::getInstance().draw(win_render->getNcursesWin(),100,25);
 }
 
 
