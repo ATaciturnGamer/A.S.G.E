@@ -6,6 +6,8 @@
 #include "Input_System/InputSystem.hpp"
 #include <ncurses.h>
 
+WINDOW *win_render, *win_log;
+
 GameLoop::GameLoop()
 {
     //Initialize certain values maybe
@@ -19,6 +21,8 @@ void GameLoop::_startUp()
     ASGE::WindowSystem::getInstance()._startUp();
     AsciiRenderer::getInstance();
     InputSystem::getInstance();
+    win_render = ASGE::WindowSystem::getInstance().getRenderWindow()->getNcursesWin();
+    win_log = ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin();
 }
 
 void GameLoop::_shutDown()
@@ -38,7 +42,7 @@ void GameLoop::Run()
         ticker.start();
         // wrefresh(ASGE::WindowSystem::getInstance().getLogWindow());
         // wrefresh(ASGE::WindowSystem::getInstance().getRenderWindow());
-        InputSystem::getInstance().fillInputBuffer(ASGE::WindowSystem::getInstance().getLogWindow());
+        InputSystem::getInstance().fillInputBuffer(win_log);
         if (InputSystem::getInstance().isKeyPressed(KEY_RESIZE))
         {
             ASGE::WindowSystem::getInstance().termResized();
@@ -54,7 +58,7 @@ void GameLoop::Run()
 
 void GameLoop::_draw()
 {
-   AsciiRenderer::getInstance().draw(ASGE::WindowSystem::getInstance().getRenderWindow(),100,25);
+   AsciiRenderer::getInstance().draw(win_render,100,25);
 }
 
 

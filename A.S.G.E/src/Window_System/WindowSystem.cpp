@@ -7,7 +7,6 @@ namespace ASGE {
     void WindowSystem::_startUp()
     {
     	initscr();
-        clear();
     	noecho();
     	cbreak();
         refresh();
@@ -27,48 +26,58 @@ namespace ASGE {
     	return *instance;
     }
 
-    WINDOW* WindowSystem::getRenderWindow()
+    AscWindow* WindowSystem::getRenderWindow()
     {
         return render_window;
     }
 
-    WINDOW* WindowSystem::getLogWindow()
+    AscWindow* WindowSystem::getLogWindow()
     {
         return log_window;
     }
 
 
-    WINDOW* WindowSystem::createWindow(int width, int height, int startx, int starty)
+    AscWindow* WindowSystem::createWindow(int width, int height, int startx, int starty)
     {
-        WINDOW *new_window;
-        // new_window = new AscWindow(height,width,starty,startx);
-        new_window = newwin(height,width,starty,startx);
-        box(new_window,0,0);//Draws border
-    	keypad(new_window,TRUE);
-    	nodelay(new_window,TRUE);
-        wrefresh(new_window);
+        AscWindow *new_window;
+        new_window = new AscWindow(width,height,startx,starty);
+        box(new_window->getNcursesWin(),0,0);//Draws border
+    	keypad(new_window->getNcursesWin(),TRUE);
+    	nodelay(new_window->getNcursesWin(),TRUE);
+        wrefresh(new_window->getNcursesWin());
         return new_window;
     }
 
     void WindowSystem::refreshWindows()
     {
         refresh();
-        wresize(render_window,15,100);
-        wborder(render_window, '|', '|', '-', '_', '+', '+', '+', '+');
-        wrefresh(render_window);
-        wborder(log_window, '|', '|', '-', '_', '+', '+', '+', '+');
-        wrefresh(log_window);
+        // wresize(render_window->getNcursesWin(),15,100);
+        wborder(render_window->getNcursesWin(), '|', '|', '-', '_', '+', '+', '+', '+');
+        wrefresh(render_window->getNcursesWin());
+        wborder(log_window->getNcursesWin(), '|', '|', '-', '_', '+', '+', '+', '+');
+        wrefresh(log_window->getNcursesWin());
     }
 
-    void WindowSystem::destroyWindow(WINDOW* del_window)
+    void WindowSystem::destroyWindow(AscWindow* del_window)
     {
-        wborder(del_window, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-        wrefresh(del_window);
-        delwin(del_window);
+        wborder(del_window->getNcursesWin(), ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+        wrefresh(del_window->getNcursesWin());
+        delete del_window;
+        // delwin(del_window->getNcursesWin());
+        del_window = NULL;
     }
 
     void WindowSystem::termResized() {
-        wresize(render_window,15,100);
-        wresize(log_window,10,100);
+        // std::vector<int> s1(2),s2(2),p1(2),p2(2);
+        // s1 = render_window->getSize();
+        // s1 = log_window->getSize();
+        // p1 = render_window->getPos();
+        // p1 = log_window->getPos();
+        // destroyWindow(log_window);
+        // destroyWindow(render_window);
+        // render_window = createWindow(s1[0],s1[1],p1[0],p1[1]);
+        // log_window = createWindow(s2[0],s2[1],p2[0],p2[1]);
+        wresize(render_window->getNcursesWin(),render_window->getSize()[1],render_window->getSize()[0]);
+        wresize(log_window->getNcursesWin(),log_window->getSize()[1],log_window->getSize()[0]);
     }
 }
