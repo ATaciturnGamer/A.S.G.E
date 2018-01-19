@@ -31,25 +31,29 @@ void AsciiRenderer::clear()
     {
         for (int j=0;j<100;j++)
         {
-            frame[i][j]=' ';
+            frame[i][j]='~';
 			attrarr[i][j]=-1;
         }
     }
 }
 
-void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
+void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs, WINDOW* log)
 {
     unsigned int ctr = 0;
     int i=pos[0];//X coord
     int j=pos[1];//Y coord
+	int k = -j;
     char c = obj[ctr];
+	mvwprintw(log,2,1," %d ",j);
 	while (j<0 && ctr<obj.length())
 	{
 		while (c!='\n')
 		{
-			c=obj[ctr++];
+			c=obj[++ctr];
 		}
-		j++;
+		c=obj[++ctr];
+		j = j + 1;
+		mvwprintw(log,3,j+1+k,"%d",ctr);
 	}
     while(ctr<obj.length() and j<25)
     {

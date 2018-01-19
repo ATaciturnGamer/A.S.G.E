@@ -14,7 +14,11 @@ namespace ASGE {
         log_window = createWindow(100,5,0,26);
         start_color();
         init_color(COLOR_RED, 700, 0, 0);
-    	init_pair(1, COLOR_RED, COLOR_BLACK);
+    	init_pair(1, COLOR_WHITE, COLOR_BLACK);
+    	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+        bkgd(COLOR_PAIR(1));
+        wbkgd(render_window->getNcursesWin(),COLOR_PAIR(1));
+        wbkgd(log_window->getNcursesWin(),COLOR_PAIR(1));
     }
 
     void WindowSystem::_shutDown()

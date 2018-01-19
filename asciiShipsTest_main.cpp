@@ -1,6 +1,7 @@
 #include <fstream>
 #include <ncurses.h>
 #include "A.S.G.E/src/Input_System/InputSystem.hpp"
+#include "A.S.G.E/src/Window_System/WindowSystem.hpp"
 #include "A.S.G.E/src/GameLoop.hpp"
 #include "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.hpp"
 
@@ -39,7 +40,7 @@ void GameLoop::_init()
     state = 0;
     std::ifstream Reader ("ascii_assets/ship1.asa");
     art = getFileContents (Reader);
-    rpos[0]=0;
+    rpos[0]=16;
     rpos[1]=0;
 }
 
@@ -49,12 +50,20 @@ void GameLoop::_update(int delta)
     {
         rpos[0]=rpos[0]+30*(delta/1000.0);
     }
-    if (InputSystem::getInstance().isMouseKeyPressed(BUTTON1_PRESSED))
+    else if (InputSystem::getInstance().isKeyPressed(KEY_DOWN))
     {
         rpos[1]=rpos[1]+30*(delta/1000.0);
     }
+    else if (InputSystem::getInstance().isKeyPressed(KEY_UP))
+    {
+        rpos[1]=rpos[1]-30*(delta/1000.0);
+    }
+    else if (InputSystem::getInstance().isKeyPressed(KEY_LEFT))
+    {
+        rpos[0]=rpos[0]-30*(delta/1000.0);
+    }
+
     spos[0]=(int)rpos[0];
     spos[1]=(int)rpos[1];
-    AsciiRenderer::getInstance().clear();
-    AsciiRenderer::getInstance().render(spos,art);
+    AsciiRenderer::getInstance().render(spos,art,-1,ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
 }

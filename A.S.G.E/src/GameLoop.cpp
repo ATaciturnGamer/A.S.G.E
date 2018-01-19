@@ -51,6 +51,7 @@ void GameLoop::Run()
         _draw();
         InputSystem::getInstance().flushInputBuffer();
         ASGE::WindowSystem::getInstance().refreshWindows();
+        AsciiRenderer::getInstance().clear();
         delta = (int)(1000/target_fps)-ticker.getDelta();
         if (delta>0) std::this_thread::sleep_for(std::chrono::milliseconds(delta));
     }
