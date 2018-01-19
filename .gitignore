@@ -2,4 +2,6 @@
 *.gch
 *.out
 *.exe
-asciiShipsTest_main
+*_main*
+!*_main.cpp
+screens
