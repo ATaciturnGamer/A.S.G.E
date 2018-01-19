@@ -31,7 +31,7 @@ void AsciiRenderer::clear()
     {
         for (int j=0;j<100;j++)
         {
-            frame[i][j]='~';
+            frame[i][j]=' ';
 			attrarr[i][j]=-1;
         }
     }
@@ -63,13 +63,17 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs, WIN
 			attrarr[j][i]=attrs;
         }
         c=obj[++ctr];
-		i++;
         if (c=='\n')
         {
+			if (i<100)
+			{
+				frame[j][i]=' ';
+			}
             i=pos[0];
             j++;
 	        c=obj[++ctr];
         }
+		else i++;
     }
 }
 
