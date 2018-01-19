@@ -1,7 +1,6 @@
 #include <fstream>
 #include <ncurses.h>
 #include "A.S.G.E/src/Input_System/InputSystem.hpp"
-#include "A.S.G.E/src/Window_System/WindowSystem.hpp"
 #include "A.S.G.E/src/GameLoop.hpp"
 #include "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.hpp"
 
@@ -88,20 +87,20 @@ void GameLoop::_update(int delta)
     AsciiRenderer::getInstance().clear();
     if (state==0)
     {
-        AsciiRenderer::getInstance().render(spos1,opt1,COLOR_PAIR(2),ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
-        AsciiRenderer::getInstance().render(spos2,opt2,-1,ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
+        AsciiRenderer::getInstance().render(spos1,opt1,COLOR_PAIR(2));
+        AsciiRenderer::getInstance().render(spos2,opt2,-1);
     }
     else if (state==1)
     {
-        AsciiRenderer::getInstance().render(spos1,opt1,-1,ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
-        AsciiRenderer::getInstance().render(spos2,opt2,COLOR_PAIR(2),ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
+        AsciiRenderer::getInstance().render(spos1,opt1,-1);
+        AsciiRenderer::getInstance().render(spos2,opt2,COLOR_PAIR(2));
     }
     else if (state==2)
     {
-        AsciiRenderer::getInstance().render(menupos,menu1,-1,ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
+        AsciiRenderer::getInstance().render(menupos,menu1,-1);
     }
     else if (state==3)
     {
-        AsciiRenderer::getInstance().render(menupos,menu2,-1,ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
+        AsciiRenderer::getInstance().render(menupos,menu2,-1);
     }
 }

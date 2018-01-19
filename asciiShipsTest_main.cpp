@@ -1,7 +1,6 @@
 #include <fstream>
 #include <ncurses.h>
 #include "A.S.G.E/src/Input_System/InputSystem.hpp"
-#include "A.S.G.E/src/Window_System/WindowSystem.hpp"
 #include "A.S.G.E/src/GameLoop.hpp"
 #include "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.hpp"
 
@@ -65,5 +64,5 @@ void GameLoop::_update(int delta)
 
     spos[0]=(int)rpos[0];
     spos[1]=(int)rpos[1];
-    AsciiRenderer::getInstance().render(spos,art,-1,ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
+    AsciiRenderer::getInstance().render(spos,art,-1);
 }
