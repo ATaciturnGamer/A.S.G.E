@@ -24,6 +24,6 @@ Then it sort of took off from there.
 
 To see a demo of current progress, compile using:<br />
 <code>
-g++ "A.S.G.E/src/GameLoop.cpp" "A.S.G.E/src/Timer.cpp" "A.S.G.E/src/Input_System/InputSystem.cpp" "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.cpp" "A.S.G.E/src/Window_System/WindowSystem.cpp" "A.S.G.E/src/Window_System/AscWindow.cpp" -std=c++11 "MenuTest_main.cpp" -o "MenuTest_main" -lncurses -lncurses
+g++ "A.S.G.E/src/GameLoop.cpp" "A.S.G.E/src/Timer.cpp" "A.S.G.E/src/Input_System/InputSystem.cpp" "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.cpp" "A.S.G.E/src/Window_System/WindowSystem.cpp" "A.S.G.E/src/Window_System/AscWindow.cpp" -std=c++11 "MenuTest_main.cpp" -o "MenuTest_main" -lncurses
 </code><br />
 It's messy, but a working prototype is what I require for now.
