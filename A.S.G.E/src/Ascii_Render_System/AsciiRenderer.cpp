@@ -42,7 +42,6 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
     unsigned int ctr = 0;
     int i=pos[0];//X coord
     int j=pos[1];//Y coord
-	int k = -j;
     char c = obj[ctr];
 	while (j<0 && ctr<obj.length())
 	{
