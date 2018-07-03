@@ -1,3 +1,6 @@
+#ifndef GAMEOBJECT_HPP
+#define GAMEOBJECT_HPP
+
 #include <vector>
 #include <string>
 
@@ -26,3 +29,5 @@ public:
     void _draw();
 
 };
+
+#endif

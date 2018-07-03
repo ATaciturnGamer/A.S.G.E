@@ -3,7 +3,8 @@
 class Ship : public GameObject
 {
 public:
-    Ship() {}
+    bool testIsMove;
+    Ship() : testIsMove(false) {}
     ~Ship() {}
     Ship(std::string asc);
     void _update(int delta);

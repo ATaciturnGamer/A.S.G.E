@@ -56,8 +56,16 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
     {
         if (i>=0 && i<100)
         {
-            frame[j][i]=c;
-			attrarr[j][i]=attrs;
+			if (c!=' ' && c!='$')
+			{
+	            frame[j][i]=c;
+				attrarr[j][i]=attrs;
+			}
+			else if (c=='$')
+			{
+				frame[j][i]=' ';
+				attrarr[j][i]=attrs;
+			}
         }
         c=obj[++ctr];
         if (c=='\n')
@@ -76,8 +84,10 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
 
 void AsciiRenderer::draw(WINDOW* win, int width, int height)
 {
-	for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
+	for (int y = 0; y < height; ++y)
+	{
+        for (int x = 0; x < width; ++x)
+		{
 			if (attrarr[y][x]!=-1)
 				wattron(win,attrarr[y][x]);
 			mvwaddch(win,y, x, frame[y][x]);

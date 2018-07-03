@@ -10,6 +10,7 @@ Ship::Ship(std::string asc)
 
 void Ship::_update(int delta)
 {
+    if (testIsMove==false) return;
     if (InputSystem::getInstance().isKeyPressed(KEY_RIGHT))
     {
         x = x + 30*(delta/1000.0);

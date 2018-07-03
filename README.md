@@ -12,18 +12,21 @@ Then it sort of took off from there.
   <li>Game Loop</li>
   <li>Input System (Mouse works only on some terminals)</li>
   <li>AscWindow System (For implementing GUIs)</li>
+  <li>Scene System</li>
+  <li>Ascii Render System (With Z axis sorting)</li>
 </ul>
+
+I don't really know what more to add
 
 ### TODO:
 
 <ul>
-  <li>Scene System</li>
-  <li>Ascii Render System (With Z axis sorting)</li>
+  <li>Make Battleships!</li>
 </ul>
 
 
 To see a demo of current progress, compile using:<br />
 <code>
-g++ "A.S.G.E/src/GameLoop.cpp" "A.S.G.E/src/Timer.cpp" "A.S.G.E/src/Input_System/InputSystem.cpp" "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.cpp" "A.S.G.E/src/Window_System/WindowSystem.cpp" "A.S.G.E/src/Window_System/AscWindow.cpp" -std=c++11 "MenuTest_main.cpp" -o "MenuTest_main" -lncurses
+make
 </code><br />
-It's messy, but a working prototype is what I require for now.
+A working prototype.
