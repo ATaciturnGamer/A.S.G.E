@@ -37,14 +37,12 @@ void AsciiRenderer::clear()
     }
 }
 
-void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs, WINDOW* log)
+void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
 {
     unsigned int ctr = 0;
     int i=pos[0];//X coord
     int j=pos[1];//Y coord
-	int k = -j;
     char c = obj[ctr];
-	mvwprintw(log,2,1," %d ",j);
 	while (j<0 && ctr<obj.length())
 	{
 		while (c!='\n')
@@ -53,14 +51,21 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs, WIN
 		}
 		c=obj[++ctr];
 		j = j + 1;
-		mvwprintw(log,3,j+1+k,"%d",ctr);
 	}
     while(ctr<obj.length() and j<25)
     {
         if (i>=0 && i<100)
         {
-            frame[j][i]=c;
-			attrarr[j][i]=attrs;
+			if (c!=' ' && c!='$')
+			{
+	            frame[j][i]=c;
+				attrarr[j][i]=attrs;
+			}
+			else if (c=='$')
+			{
+				frame[j][i]=' ';
+				attrarr[j][i]=attrs;
+			}
         }
         c=obj[++ctr];
         if (c=='\n')
@@ -79,8 +84,10 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs, WIN
 
 void AsciiRenderer::draw(WINDOW* win, int width, int height)
 {
-	for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
+	for (int y = 0; y < height; ++y)
+	{
+        for (int x = 0; x < width; ++x)
+		{
 			if (attrarr[y][x]!=-1)
 				wattron(win,attrarr[y][x]);
 			mvwaddch(win,y, x, frame[y][x]);

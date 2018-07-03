@@ -1,9 +1,12 @@
 #include <fstream>
+#include <list>
 #include <ncurses.h>
 #include "A.S.G.E/src/Input_System/InputSystem.hpp"
-#include "A.S.G.E/src/Window_System/WindowSystem.hpp"
 #include "A.S.G.E/src/GameLoop.hpp"
 #include "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.hpp"
+// #include "A.S.G.E/src/Scene_System/Scene.hpp"
+#include "A.S.G.E/src/Scene_System/SceneSystem.hpp"
+#include "Ship.hpp"
 
 int state;
 std::string art;
@@ -11,19 +14,24 @@ std::vector<float> rpos(2);
 std::vector<int> spos(2);
 
 
+Scene *thisScene;
+Ship ship;
+Ship ship2;
+
+
 std::string getFileContents (std::ifstream& File)
 {
-    std::string Lines = "";        //All lines
+    std::string Lines = "";
 
-    if (File)                      //Check if everything is good
+    if (File)
     {
 	while (File.good ())
 	{
-	    std::string TempLine;                  //Temp line
+	    std::string TempLine;
 	    std::getline (File , TempLine);        //Get temp line
-	    TempLine += "\n";                      //Add newline character
+	    TempLine += "\n";
 
-	    Lines += TempLine;                     //Add newline
+	    Lines += TempLine;
 	}
 	return Lines;
     }
@@ -40,30 +48,12 @@ void GameLoop::_init()
     state = 0;
     std::ifstream Reader ("ascii_assets/ship1.asa");
     art = getFileContents (Reader);
-    rpos[0]=16;
-    rpos[1]=0;
-}
-
-void GameLoop::_update(int delta)
-{
-    if (InputSystem::getInstance().isKeyPressed(KEY_RIGHT))
-    {
-        rpos[0]=rpos[0]+30*(delta/1000.0);
-    }
-    else if (InputSystem::getInstance().isKeyPressed(KEY_DOWN))
-    {
-        rpos[1]=rpos[1]+30*(delta/1000.0);
-    }
-    else if (InputSystem::getInstance().isKeyPressed(KEY_UP))
-    {
-        rpos[1]=rpos[1]-30*(delta/1000.0);
-    }
-    else if (InputSystem::getInstance().isKeyPressed(KEY_LEFT))
-    {
-        rpos[0]=rpos[0]-30*(delta/1000.0);
-    }
-
-    spos[0]=(int)rpos[0];
-    spos[1]=(int)rpos[1];
-    AsciiRenderer::getInstance().render(spos,art,-1,ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin());
+    ship = Ship(art);
+    ship2 = Ship(art);
+    ship.setPos(20,1);
+    ship2.setPos(10,1,4);
+    ship2.testIsMove=true;
+    thisScene = SceneSystem::getInstance().getScene();
+    thisScene->addObject(&ship);
+    thisScene->addObject(&ship2);
 }
