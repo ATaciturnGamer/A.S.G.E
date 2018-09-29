@@ -1,6 +1,6 @@
 #include <list>
 #include <vector>
-#include "../Core/GameObject.hpp"
+#include "../Entity/GameObject.hpp"
 
 struct zCompare
 {

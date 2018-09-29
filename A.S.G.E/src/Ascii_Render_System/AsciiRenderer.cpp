@@ -52,6 +52,7 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
 		c=obj[++ctr];
 		j = j + 1;
 	}
+	printf("%d %d %c\n",j,ctr,obj[ctr]);
     while(ctr<obj.length() and j<25)
     {
         if (i>=0 && i<100)
@@ -80,6 +81,50 @@ void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
         }
 		else i++;
     }
+}
+
+void AsciiRenderer::renderLine(const Point2D pt1, const Point2D pt2, int attrs)
+{
+	float dx=(pt2.x-pt1.x);
+	float dy=(pt2.y-pt1.y);
+	float limit;
+	if (abs(dx)>=abs(dy)) limit=abs(dx);
+	else limit=abs(dy);
+	dx=dx/limit;dy=dy/limit;
+	int xdir,ydir;
+	if (pt2.x>pt1.x) xdir=1; else xdir=-1;
+	if (pt2.y>pt1.y) ydir=1; else ydir=-1;
+	int i=1;
+	float tx,ty;
+	tx=pt1.x;ty=pt1.y;
+	while (i<=limit)
+	{
+		if (((int)tx<100 && (int)tx>=0) && ((int)ty<25 && (int)ty>=0))
+		{
+			if (abs(dx)<1)
+			{
+				frame[(int)ty][(int)tx]='|';
+			}
+			else
+			{
+				if ((int)ty>(int)(ty+dy))// || (int)ty!=(int)(ty-dy))
+				{
+					if (xdir*ydir==1) frame[(int)ty][(int)tx]='\\';
+					else  frame[(int)ty][(int)tx]='/';
+				}
+				else if ((int)ty>(int)(ty-dy))// || (int)ty!=(int)(ty-dy))
+				{
+					if (xdir*ydir==1) frame[(int)ty][(int)tx]='\\';
+					frame[(int)ty][(int)tx]='/';
+				}
+				else frame[(int)ty][(int)tx]='_';
+			}
+			attrarr[(int)ty][(int)tx]=attrs;
+		}
+		tx=tx+dx;
+		ty=ty+dy;
+		i++;
+	}
 }
 
 void AsciiRenderer::draw(WINDOW* win, int width, int height)

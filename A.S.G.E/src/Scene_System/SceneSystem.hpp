@@ -15,5 +15,5 @@ public:
 
     Scene* getScene();
 
-    void loadScene(char* file);
+    void loadScene(int scene_num);
 };
