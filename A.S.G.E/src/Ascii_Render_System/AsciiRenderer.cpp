@@ -37,50 +37,10 @@ void AsciiRenderer::clear()
     }
 }
 
-void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
+void AsciiRenderer::putSym(std::vector<int> pos, char sym, int attrs)
 {
-    unsigned int ctr = 0;
-    int i=pos[0];//X coord
-    int j=pos[1];//Y coord
-    char c = obj[ctr];
-	while (j<0 && ctr<obj.length())
-	{
-		while (c!='\n')
-		{
-			c=obj[++ctr];
-		}
-		c=obj[++ctr];
-		j = j + 1;
-	}
-	printf("%d %d %c\n",j,ctr,obj[ctr]);
-    while(ctr<obj.length() and j<25)
-    {
-        if (i>=0 && i<100)
-        {
-			if (c!=' ' && c!='$')
-			{
-	            frame[j][i]=c;
-				attrarr[j][i]=attrs;
-			}
-			else if (c=='$')
-			{
-				frame[j][i]=' ';
-				attrarr[j][i]=attrs;
-			}
-        }
-        c=obj[++ctr];
-        if (c=='\n')
-        {
-			if (i<100)
-			{
-				frame[j][i]=' ';
-			}
-            i=pos[0];
-            j++;
-	        c=obj[++ctr];
-        }
-		else i++;
-    }
+	frame[pos[1]][pos[0]]=sym;
+	attrarr[pos[1]][pos[0]]=attrs;
 }
 
 void AsciiRenderer::renderLine(const Point2D pt1, const Point2D pt2, int attrs)
