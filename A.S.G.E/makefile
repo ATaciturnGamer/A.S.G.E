@@ -39,6 +39,7 @@ $(addprefix $(srcdir),Timer.o): $(addprefix $(srcdir),Timer.cpp)
 	g++ -c -o $(srcdir)Timer.o $<
 
 clean:
+	rm asge.a
 	rm -r -f $(objdir)
 	rm -f $(srcdir)*.o
 	make clean -C $(srcdir)Ascii_Render_System/

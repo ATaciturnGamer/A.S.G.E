@@ -1,5 +1,4 @@
 #include <fstream>
-#include <list>
 #include <ncurses.h>
 
 #include "A.S.G.E/include/Game.hpp"

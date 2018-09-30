@@ -7,7 +7,7 @@ float tim=0;
 
 void Polygon2D::_update(int delta)
 {
-    // rotate(0.005*delta);
+    
 }
 
 void Polygon2D::_draw()
