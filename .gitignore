@@ -1,4 +1,7 @@
 #Compiled stuff
+**/obj/
+*.o
+*.a
 *.gch
 *.out
 *.exe

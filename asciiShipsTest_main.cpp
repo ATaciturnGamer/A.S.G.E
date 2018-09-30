@@ -1,14 +1,9 @@
 #include <fstream>
 #include <list>
 #include <ncurses.h>
-#include "A.S.G.E/src/Input_System/InputSystem.hpp"
-#include "A.S.G.E/src/GameLoop.hpp"
-#include "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.hpp"
-// #include "A.S.G.E/src/Scene_System/Scene.hpp"
-#include "A.S.G.E/src/Scene_System/SceneSystem.hpp"
 
-#include "A.S.G.E/src/Entity/Shape2D/Polygon2D.hpp"
-#include "A.S.G.E/src/Window_System/WindowSystem.hpp"
+#include "A.S.G.E/include/Game.hpp"
+
 
 #include "Ship.hpp"
 

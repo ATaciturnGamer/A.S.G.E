@@ -1,6 +1,6 @@
 #include "Ship.hpp"
 
-#include "A.S.G.E/src/Input_System/InputSystem.hpp"
+#include "A.S.G.E/include/Game.hpp"
 
 Ship::Ship() : Sprite2D()
 {

@@ -1,3 +1,6 @@
+#ifndef INPUTSYS_HPP
+#define INPUTSYS_HPP
+
 #include <list>
 #include <algorithm>
 #include <ncurses.h>
@@ -22,3 +25,5 @@ public:
     bool isKeyPressed(int scancode);
     bool isMouseKeyPressed(int scancode);
 };
+
+#endif

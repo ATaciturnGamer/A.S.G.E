@@ -1,8 +1,11 @@
+#ifndef ASCRENDER_HPP
+#define ASCRENDER_HPP
+
 #include <vector>
 #include <string>
 #include <ncurses.h>
 
-#include "../Math.hpp"
+#include "../Core/Math.hpp"
 
 class AsciiRenderer
 {
@@ -23,3 +26,5 @@ public:
     void renderLine(const Point2D p1,const Point2D p2, int attrs);
     void draw(WINDOW* win, int width, int height);
 };
+
+#endif

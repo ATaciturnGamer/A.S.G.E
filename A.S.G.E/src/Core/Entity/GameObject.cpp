@@ -1,5 +1,5 @@
 #include "GameObject.hpp"
-#include "../Ascii_Render_System/AsciiRenderer.hpp"
+#include "../../Ascii_Render_System/AsciiRenderer.hpp"
 
 
 void GameObject::_draw()

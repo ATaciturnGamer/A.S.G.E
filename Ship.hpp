@@ -1,4 +1,4 @@
-#include "A.S.G.E/src/Entity/Sprite/Sprite2D.hpp"
+#include "A.S.G.E/include/Game.hpp"
 
 class Ship : public Sprite2D
 {
