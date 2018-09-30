@@ -29,4 +29,4 @@ To see a demo of current progress, compile using:<br />
 <code>
 make
 </code><br />
-A working prototype.
+test.out is a program for Dynamic 2D water. Press 'Space' to splash.
