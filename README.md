@@ -16,7 +16,7 @@ Then it sort of took off from there.
   <li>Ascii Render System (With Z axis sorting)</li>
 </ul>
 
-I don't really know what more to add
+Project on hold indefinitely
 
 ### TODO:
 
