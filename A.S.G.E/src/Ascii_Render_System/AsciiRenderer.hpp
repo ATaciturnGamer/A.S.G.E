@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <ncurses.h>
+#include <cmath>
 
 #include "../Core/Math.hpp"
 

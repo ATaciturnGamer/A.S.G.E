@@ -48,12 +48,12 @@ void AsciiRenderer::renderLine(const Point2D pt1, const Point2D pt2, int attrs)
 	float dx=(pt2.x-pt1.x);
 	float dy=(pt2.y-pt1.y);
 	float limit;
-	if (abs(dx)>=abs(dy)) limit=abs(dx);
-	else limit=abs(dy);
+	if (std::abs(dx)>=std::abs(dy)) limit=std::abs(dx);
+	else limit=std::abs(dy);
 	dx=dx/limit;dy=dy/limit;
 	int xdir,ydir;
-	if (pt2.x>pt1.x) xdir=1; else xdir=-1;
-	if (pt2.y>pt1.y) ydir=1; else ydir=-1;
+	if (dx>0) xdir=1; else xdir=-1;
+	if (dy>0) ydir=1; else ydir=-1;
 	int i=1;
 	float tx,ty;
 	tx=pt1.x;ty=pt1.y;
@@ -61,7 +61,7 @@ void AsciiRenderer::renderLine(const Point2D pt1, const Point2D pt2, int attrs)
 	{
 		if (((int)tx<100 && (int)tx>=0) && ((int)ty<25 && (int)ty>=0))
 		{
-			if (abs(dx)<1)
+			if (std::abs(dx)<1)
 			{
 				frame[(int)ty][(int)tx]='|';
 			}
@@ -69,13 +69,13 @@ void AsciiRenderer::renderLine(const Point2D pt1, const Point2D pt2, int attrs)
 			{
 				if ((int)ty>(int)(ty+dy))// || (int)ty!=(int)(ty-dy))
 				{
-					if (xdir*ydir==1) frame[(int)ty][(int)tx]='\\';
-					else  frame[(int)ty][(int)tx]='/';
+					if (xdir==-1) frame[(int)ty][(int)tx]='\\';
+					else frame[(int)ty][(int)tx]='/';
 				}
 				else if ((int)ty>(int)(ty-dy))// || (int)ty!=(int)(ty-dy))
 				{
-					if (xdir*ydir==1) frame[(int)ty][(int)tx]='\\';
-					frame[(int)ty][(int)tx]='/';
+					if (xdir==1) frame[(int)ty][(int)tx]='\\';
+					else frame[(int)ty][(int)tx]='/';
 				}
 				else frame[(int)ty][(int)tx]='_';
 			}

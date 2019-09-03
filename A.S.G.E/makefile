@@ -5,7 +5,7 @@ objects = 	Ascii_Render_System/render.o \
 			Input_System/input.o\
 			Scene_System/scene.o\
 			Window_System/window.o\
-			GameLoop.o\
+			gameLoop.o\
 			Timer.o
 objdir = ./obj/
 
@@ -33,10 +33,10 @@ $(addprefix $(srcdir),Window_System/window.o):
 	make -C $(srcdir)Window_System/
 
 $(addprefix $(srcdir),gameLoop.o): $(addprefix $(srcdir),GameLoop.cpp)
-	g++ -c -o $(srcdir)gameLoop.o $<
+	g++ -c -o $(srcdir)gameLoop.o $< -std=c++11
 
 $(addprefix $(srcdir),Timer.o): $(addprefix $(srcdir),Timer.cpp)
-	g++ -c -o $(srcdir)Timer.o $<
+	g++ -c -o $(srcdir)Timer.o $< -std=c++11
 
 clean:
 	rm asge.a

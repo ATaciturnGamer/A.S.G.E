@@ -7,7 +7,7 @@ Scene::Scene()
 
 void Scene::addObject(GameObject *obj)
 {
-    std::list<GameObject*>::const_iterator iter;
+    std::list<GameObject*>::iterator iter;
     for (iter = objectList.begin(); iter!=objectList.end(); iter++)
     {
         if ((*iter)->z>obj->z) break;

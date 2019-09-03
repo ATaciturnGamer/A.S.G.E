@@ -4,7 +4,7 @@ namespace WaterGlobals {
     long int time = 0;
     const float k = 0.30;
     const float damp = 0.08;
-    const float spread = 0.0015;
+    const float spread = 0.01;
 } /* WaterGlobals */
 Water2D::Water2D(int width, int height) : Polygon2D()
 {
@@ -25,7 +25,6 @@ Water2D::Water2D(int width, int height) : Polygon2D()
     {
         surface[i]=0;
     }
-    splash(5);
 }
 
 void Water2D::updateSpring(float delta)
@@ -46,7 +45,8 @@ void Water2D::updateSurface()
 
 void Water2D::splash(int index)
 {
-    sur_vel[index]=7;
+    if (index<0 || index>=resolution) return;
+    sur_vel[index]+=7;
 }
 
 void Water2D::applyHooke(int index, float delta)
@@ -77,7 +77,7 @@ void Water2D::_update(int delta)
     float l_delta[10];
     float r_delta[10];
 
-    for (int i=0;i<20;i++)
+    for (int i=0;i<10;i++)
     {
         for (int j=0;j<resolution;j++)
         {
