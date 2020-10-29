@@ -1,3 +1,6 @@
+#ifndef SCENESYS_HPP
+#define SCENESYS_HPP
+
 #include "Scene.hpp"
 
 class SceneSystem
@@ -15,5 +18,7 @@ public:
 
     Scene* getScene();
 
-    void loadScene(char* file);
+    void loadScene(int scene_num);
 };
+
+#endif

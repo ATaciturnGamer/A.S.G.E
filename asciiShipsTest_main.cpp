@@ -1,11 +1,9 @@
 #include <fstream>
-#include <list>
 #include <ncurses.h>
-#include "A.S.G.E/src/Input_System/InputSystem.hpp"
-#include "A.S.G.E/src/GameLoop.hpp"
-#include "A.S.G.E/src/Ascii_Render_System/AsciiRenderer.hpp"
-// #include "A.S.G.E/src/Scene_System/Scene.hpp"
-#include "A.S.G.E/src/Scene_System/SceneSystem.hpp"
+
+#include "A.S.G.E/include/Game.hpp"
+
+
 #include "Ship.hpp"
 
 int state;
@@ -15,8 +13,9 @@ std::vector<int> spos(2);
 
 
 Scene *thisScene;
-Ship ship;
-Ship ship2;
+Ship *ship;
+// Ship ship2;
+Polygon2D *plgn;
 
 
 std::string getFileContents (std::ifstream& File)
@@ -46,14 +45,22 @@ void GameLoop::_init()
     is_running=true;
     target_fps = 30;
     state = 0;
-    std::ifstream Reader ("ascii_assets/ship1.asa");
-    art = getFileContents (Reader);
-    ship = Ship(art);
-    ship2 = Ship(art);
-    ship.setPos(20,1);
-    ship2.setPos(10,1,4);
-    ship2.testIsMove=true;
     thisScene = SceneSystem::getInstance().getScene();
-    thisScene->addObject(&ship);
-    thisScene->addObject(&ship2);
+    std::ifstream Reader ("ascii_assets/b_ship1.asa");
+    art = getFileContents (Reader);
+    ship = new Ship();
+    ship->setSprite(&art);
+    // ship2 = Ship(art);
+    ship->setPos(10,5);
+    // ship2.setPos(10,1,4);
+    ship->testIsMove=true;
+    thisScene->addObject(ship);
+    // thisScene->addObject(&ship2);
+    plgn = new Polygon2D();
+    plgn->pushVertex(-5.0,5.0);
+    plgn->pushVertex(5.0,5.0);
+    plgn->pushVertex(0.0,-7.0);
+    plgn->setPos(50.0,12.0);
+    thisScene->addObject(plgn);
+    mvwprintw(ASGE::WindowSystem::getInstance().getLogWindow()->getNcursesWin(),1,2,"Log: ");
 }

@@ -1,11 +1,15 @@
 #include "Ship.hpp"
 
-#include "A.S.G.E/src/Input_System/InputSystem.hpp"
+#include "A.S.G.E/include/Game.hpp"
 
-
-Ship::Ship(std::string asc)
+Ship::Ship() : Sprite2D()
 {
-    setSprite(asc);
+    testIsMove=false;
+}
+
+Ship::Ship(std::string* asc) : Sprite2D(asc)
+{
+    testIsMove=false;
 }
 
 void Ship::_update(int delta)

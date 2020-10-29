@@ -32,7 +32,7 @@ void InputSystem::fillInputBuffer(WINDOW* win)
 	bool flag = false;
 	if (i!=ERR)
 	{
-		mvwprintw(win,1,2,"Input: %d",i);
+		//mvwprintw(win,1,2,"Input: %d",i);
 		flag = false;
 		if (i!=-103)
 		{

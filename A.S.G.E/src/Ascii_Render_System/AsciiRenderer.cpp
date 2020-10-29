@@ -37,49 +37,54 @@ void AsciiRenderer::clear()
     }
 }
 
-void AsciiRenderer::render(std::vector<int> pos, std::string obj, int attrs)
+void AsciiRenderer::putSym(std::vector<int> pos, char sym, int attrs)
 {
-    unsigned int ctr = 0;
-    int i=pos[0];//X coord
-    int j=pos[1];//Y coord
-    char c = obj[ctr];
-	while (j<0 && ctr<obj.length())
+	frame[pos[1]][pos[0]]=sym;
+	attrarr[pos[1]][pos[0]]=attrs;
+}
+
+void AsciiRenderer::renderLine(const Point2D pt1, const Point2D pt2, int attrs)
+{
+	float dx=(pt2.x-pt1.x);
+	float dy=(pt2.y-pt1.y);
+	float limit;
+	if (std::abs(dx)>=std::abs(dy)) limit=std::abs(dx);
+	else limit=std::abs(dy);
+	dx=dx/limit;dy=dy/limit;
+	int xdir,ydir;
+	if (dx>0) xdir=1; else xdir=-1;
+	if (dy>0) ydir=1; else ydir=-1;
+	int i=1;
+	float tx,ty;
+	tx=pt1.x;ty=pt1.y;
+	while (i<=limit)
 	{
-		while (c!='\n')
+		if (((int)tx<100 && (int)tx>=0) && ((int)ty<25 && (int)ty>=0))
 		{
-			c=obj[++ctr];
+			if (std::abs(dx)<1)
+			{
+				frame[(int)ty][(int)tx]='|';
+			}
+			else
+			{
+				if ((int)ty>(int)(ty+dy))// || (int)ty!=(int)(ty-dy))
+				{
+					if (xdir==-1) frame[(int)ty][(int)tx]='\\';
+					else frame[(int)ty][(int)tx]='/';
+				}
+				else if ((int)ty>(int)(ty-dy))// || (int)ty!=(int)(ty-dy))
+				{
+					if (xdir==1) frame[(int)ty][(int)tx]='\\';
+					else frame[(int)ty][(int)tx]='/';
+				}
+				else frame[(int)ty][(int)tx]='_';
+			}
+			attrarr[(int)ty][(int)tx]=attrs;
 		}
-		c=obj[++ctr];
-		j = j + 1;
+		tx=tx+dx;
+		ty=ty+dy;
+		i++;
 	}
-    while(ctr<obj.length() and j<25)
-    {
-        if (i>=0 && i<100)
-        {
-			if (c!=' ' && c!='$')
-			{
-	            frame[j][i]=c;
-				attrarr[j][i]=attrs;
-			}
-			else if (c=='$')
-			{
-				frame[j][i]=' ';
-				attrarr[j][i]=attrs;
-			}
-        }
-        c=obj[++ctr];
-        if (c=='\n')
-        {
-			if (i<100)
-			{
-				frame[j][i]=' ';
-			}
-            i=pos[0];
-            j++;
-	        c=obj[++ctr];
-        }
-		else i++;
-    }
 }
 
 void AsciiRenderer::draw(WINDOW* win, int width, int height)

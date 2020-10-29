@@ -6,15 +6,14 @@
 
 class GameObject
 {
-private:
-    std::string ascii_sprite;
 public:
     float x;
     float y;
     int z;
 
+public:
     GameObject() : x(0), y(0), z(0) {}
-    ~GameObject() {}
+    virtual ~GameObject() {}
 
     void setPos(float x, float y);
     void setPos(float x, float y, int z);
@@ -23,10 +22,8 @@ public:
     void setZOrder(int z);
     int getZOrder();
 
-    void setSprite(std::string asc);
-
     virtual void _update(int delta) = 0;
-    void _draw();
+    virtual void _draw();
 
 };
 

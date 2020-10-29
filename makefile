@@ -1,7 +1,16 @@
-VPATH = A.S.G.E/src
 LINK_TARGET = test.out
 
 all: $(LINK_TARGET)
 
-test.out:	GameLoop.cpp Timer.cpp Input_System/InputSystem.cpp Ascii_Render_System/AsciiRenderer.cpp Window_System/WindowSystem.cpp Window_System/AscWindow.cpp Core/GameObject.cpp Scene_System/Scene.cpp Scene_System/SceneSystem.cpp Ship.cpp asciiShipsTest_main.cpp
+test.out:	DynamicWaterTest_main.cpp tests/Dynamic_Water/Water2D.cpp A.S.G.E/asge.a
 	g++ -o $@ $^ -std=c++11 -lncurses
+
+A.S.G.E/asge.a:
+	make -C A.S.G.E
+
+clean:
+	rm -f ./test.out
+	make clean -C A.S.G.E
+
+run:
+	./test.out

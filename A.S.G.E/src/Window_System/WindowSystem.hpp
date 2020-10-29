@@ -1,3 +1,6 @@
+#ifndef WINDOWSYS_HPP
+#define WINDOWSYS_HPP
+
 #include <ncurses.h>
 #include "AscWindow.hpp"
 
@@ -20,3 +23,5 @@ namespace ASGE {
         void termResized();
     };
 } /* A.S.G.E */
+
+#endif

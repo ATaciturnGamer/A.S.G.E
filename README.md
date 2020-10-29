@@ -11,9 +11,16 @@ Then it sort of took off from there.
 <ul>
   <li>Game Loop</li>
   <li>Input System (Mouse works only on some terminals)</li>
-  <li>AscWindow System (For implementing GUIs)</li>
-  <li>Scene System</li>
-  <li>Ascii Render System (With Z axis sorting)</li>
+  <li>AscWindow System (Only Render window and Log window for now)</li>
+  <li>Scene (Linked list of objects sorted in Z-order)
+  <li>Entities
+    <ul>
+      <li>Basic Game Object</li>
+      <li>Sprite</li>
+      <li>Polygon</li>
+    </ul>
+  </li>
+  <li>Ascii Line Rendering</li>
 </ul>
 
 Project on hold indefinitely
@@ -21,6 +28,7 @@ Project on hold indefinitely
 ### TODO:
 
 <ul>
+  <li>Logging system</li>
   <li>Make Battleships!</li>
 </ul>
 
@@ -29,4 +37,4 @@ To see a demo of current progress, compile using:<br />
 <code>
 make
 </code><br />
-A working prototype.
+test.out is a program for Dynamic 2D water. Press 'Space' to splash.

@@ -63,6 +63,14 @@ void GameLoop::_draw()
    AsciiRenderer::getInstance().draw(win_render->getNcursesWin(),100,25);
 }
 
+// void GameLoop::_init()
+// {
+//     is_running=true;
+//     target_fps = 30;
+//     state = 0;
+//     thisScene = SceneSystem::getInstance().loadScene(0);
+// }
+
 void GameLoop::_update(int delta)
 {
     for (std::list<GameObject*>::const_iterator iter=currentScene->objectList.begin(); iter!=currentScene->objectList.end(); iter++)

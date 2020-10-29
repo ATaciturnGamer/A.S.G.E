@@ -1,12 +1,12 @@
-#include "A.S.G.E/src/Core/GameObject.hpp"
+#include "A.S.G.E/include/Game.hpp"
 
-class Ship : public GameObject
+class Ship : public Sprite2D
 {
 public:
     bool testIsMove;
-    Ship() : testIsMove(false) {}
+    Ship();
     ~Ship() {}
-    Ship(std::string asc);
+    Ship(std::string* asc);
     void _update(int delta);
 private:
     int size;
